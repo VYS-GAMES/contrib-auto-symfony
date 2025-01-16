@@ -28,6 +28,7 @@ use Symfony\Component\Messenger\Transport\Sender\SenderInterface;
  */
 final class MessengerInstrumentation
 {
+    const NAME = 'messenger';
     const ATTRIBUTE_MESSENGER_BUS = 'symfony.messenger.bus';
     const ATTRIBUTE_MESSENGER_MESSAGE = 'symfony.messenger.message';
     const ATTRIBUTE_MESSENGER_TRANSPORT = 'symfony.messenger.transport';
@@ -63,6 +64,7 @@ final class MessengerInstrumentation
                     ->setAttribute(TraceAttributes::CODE_NAMESPACE, $class)
                     ->setAttribute(TraceAttributes::CODE_FILEPATH, $filename)
                     ->setAttribute(TraceAttributes::CODE_LINENO, $lineno)
+                    ->setAttribute(TraceAttributes::PEER_SERVICE, self::NAME)
 
                     ->setAttribute(self::ATTRIBUTE_MESSENGER_BUS, $class)
                     ->setAttribute(self::ATTRIBUTE_MESSENGER_MESSAGE, $messageClass)
@@ -130,6 +132,7 @@ final class MessengerInstrumentation
                     ->setAttribute(TraceAttributes::CODE_NAMESPACE, $class)
                     ->setAttribute(TraceAttributes::CODE_FILEPATH, $filename)
                     ->setAttribute(TraceAttributes::CODE_LINENO, $lineno)
+                    ->setAttribute(TraceAttributes::PEER_SERVICE, self::NAME)
 
                     ->setAttribute(self::ATTRIBUTE_MESSENGER_TRANSPORT, $class)
                     ->setAttribute(self::ATTRIBUTE_MESSENGER_MESSAGE, $messageClass)
